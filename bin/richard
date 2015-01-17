@@ -1,0 +1,5 @@
+#!/usr/bin/env ruby
+
+require 'richard-cli'
+
+Richard::Cli.hello_world
