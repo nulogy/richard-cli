@@ -1,5 +1,54 @@
 #!/usr/bin/env ruby
 
-require 'richard-cli'
+require 'richard'
 
-Richard::Cli.hello_world
+
+def print_usage
+  puts <<-EOS
+Usage:
+  richard command [user_id]
+
+Commands:
+  list - List current queue
+  enqueue - Add yourself to the queue
+  cancel - Cancel yourself from the queue if you are in nit
+  run - Signal to the queue if you are running (only works if you are at the head of the queue)
+  finish - Signal to the queue if you are finished (only works if you are at the head of the queue)
+  force_release - Force releases another user.  The user_id must be provided.
+EOS
+end
+
+
+
+config = Richard::ConfigRepository.find_or_create
+server = Richard::Server.new(config.url, config.api_key)
+
+case ARGV[0]
+when 'list'
+  server.list
+
+when 'enqueue'
+  server.enqueue
+
+when 'cancel'
+  server.cancel
+
+when 'run'
+  server.run
+
+when 'finish'
+  server.finish
+
+when 'force_release'
+  user_id = ARGV[1].to_i
+
+  if user_id
+    server.force_release(user_id)
+  else
+    print_usage
+  end
+
+else
+  print_usage
+
+end
