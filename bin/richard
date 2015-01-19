@@ -42,7 +42,7 @@ when 'finish'
 when 'force_release'
   user_id = ARGV[1].to_i
 
-  if user_id
+  if user_id > 0
     server.force_release(user_id)
   else
     print_usage
@@ -50,5 +50,4 @@ when 'force_release'
 
 else
   print_usage
-
 end

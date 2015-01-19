@@ -61,7 +61,9 @@ module Richard
     end
 
     def format_estimated_wait(response)
-      "Estimated Wait: #{response['estimated_wait_time']}"
+      seconds = response['estimated_wait_time']
+      wait_time = Time.at(seconds).utc.strftime("%Hh %Mm %Ss")
+      "Estimated Wait: #{wait_time}"
     end
 
     def format_flash(flash)

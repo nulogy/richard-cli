@@ -17,19 +17,23 @@ module Richard
     def row_header
       [
         "User Id",
-        "Name",
-        "Email",
-        "Status"
+        "User",
+        "Status",
+        "Blocking Duration"
       ]
     end
 
     def user_to_row(user)
       return [
         user.user_id,
-        user.name,
         user.email,
-        user.status
+        user.status,
+        format_duration(user.blocking_duration)
       ]
+    end
+
+    def format_duration(duration)
+      (duration) ? Time.at(duration).utc.strftime("%Hh %Mm %Ss") : '--'
     end
   end
 end
