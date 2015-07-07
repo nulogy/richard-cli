@@ -15,10 +15,8 @@ Install it yourself as:
 
     Commands:
       list - List current queue
-      enqueue - Add yourself to the queue
-      cancel - Cancel yourself from the queue if you are in nit
-      run - Signal to the queue if you are running (only works if you are at the head of the queue)
-      finish - Signal to the queue if you are finished (only works if you are at the head of the queue)
+      grab - Add yourself to the queue
+      release - Removes you from the queue
       force_release - Force releases another user.  The user_id must be provided.
 
 ## Contributing
