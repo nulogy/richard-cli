@@ -13,23 +13,13 @@ module Richard
       @api_key = api_key
     end
 
-    def enqueue
-      response = send_command("/queue/enqueue.json")
+    def grab
+      response = send_command("/queue/grab.json")
       print_result(response)
     end
 
-    def cancel
-      response = send_command("/queue/cancel.json")
-      print_result(response)
-    end
-
-    def run
-      response = send_command("/queue/run.json")
-      print_result(response)
-    end
-
-    def finish
-      response = send_command("/queue/finish.json")
+    def release
+      response = send_command("/queue/release.json")
       print_result(response)
     end
 
