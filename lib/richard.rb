@@ -35,7 +35,7 @@ module Richard
     def is_it_my_turn
       response = JSON.parse(RestClient.get(@base_url + "/queue/status?format=json&api_key=#{@api_key}"))
 
-      if response['content']['queue_transaction']['status'] == 'running'
+      if is_my_turn?(response)
         puts 'yes'
         exit 0
       else
@@ -45,6 +45,11 @@ module Richard
     end
 
   private
+
+    def is_my_turn?(response)
+      queue_data = response['content'].fetch('queue_transaction') { {} }
+      queue_data['status'] == 'running'
+    end
 
     def send_command(url)
       RestClient.post(@base_url + url, api_key: @api_key)
