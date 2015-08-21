@@ -18,6 +18,7 @@ Install it yourself as:
       grab - Add yourself to the queue
       release - Removes you from the queue
       force_release - Force releases another user.  The user_id must be provided.
+      is_it_my_turn - Returns 'Yes' or 'No'. It also returns status code 0 for 'Yes' and -1 for 'No'
 
 ## Contributing
 
